@@ -1,0 +1,38 @@
+server:
+  port: 18085
+spring:
+  application:
+    name: gatewayservice
+  datasource:
+    url: jdbc:mysql://localhost:3306/store?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&autoReconnect=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: user-service
+          uri: lb://userservice
+          predicates:
+            - Path=/user/**
+        - id: coupon-service
+          uri: lb://couponservice
+          predicates:
+            - Path=/coupon/**
+        - id: commodity-service
+          uri: lb://commodityservice
+          predicates:
+            - Path=/commodity/**
+        - id: cart-service
+          uri: lb://cartservice
+          predicates:
+            - Path=/cart/**
+        - id: indent-service
+          uri: lb://indentservice
+          predicates:
+            - Path=/indent/**
+    nacos:
+      server-addr: localhost:8848

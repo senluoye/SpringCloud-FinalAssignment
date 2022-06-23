@@ -1,0 +1,23 @@
+server:
+  port: 18083
+spring:
+  application:
+    name: commodityservice
+  datasource:
+    url: jdbc:mysql://localhost:3306/store?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&autoReconnect=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+      nacos:
+        server-addr: localhost:8848
+
+mybatis:
+  type-aliases-package: com.qks.common.entity
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    com.qks: debug
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS
